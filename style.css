@@ -1,0 +1,10 @@
+html, body, #map {
+  height: 100%;
+  margin: 0;
+}
+
+#mapContainer{
+  height: calc(100% - 46px);
+  z-index: inherit;
+  margin-top: 46px;
+}

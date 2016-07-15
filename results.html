@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<title>TAXI RANKER</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+<style>
+body {font-family: "Lato", sans-serif ; text-align: center;overflow:hidden; }
+</style>
+<body style="background-color:">
+
+<!-- Navbar -->
+<div class="w3-top">
+<ul class="w3-navbar w3-teal w3-card-2 w3-left-align">
+  <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
+    <a class="w3-padding-large" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+  </li>
+  <li><a href="#" class="w3-hover-none w3-hover-text-grey w3-padding-large">HOME</a></li>
+  <li class="w3-hide-small"><a href="#" class="w3-padding-large">HELP</a></li>
+  <li class="w3-hide-small"><a href="#" class="w3-padding-large">RESULTS</a></li>
+  <li class="w3-hide-small"><a href="#" class=" w3-padding-large">CONTACT</a></li>
+  <li class="w3-hide-small"><a href="#" class=" w3-padding-large">OUR TEAM</a></li>
+  </li>
+</ul>
+</div>
+
+<!-- Navbar on small screens -->
+<div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+  <ul class="w3-navbar w3-left-align w3-teal">
+    <li><a class="w3-padding-large" href="#">HELP</a></li>
+    <li><a class="w3-padding-large" href="#">RESULTS</a></li>
+    <li ><a class="w3-padding-large" href="#">CONTACT</a></li>
+      <li ><a class="w3-padding-large" href="#">OU TEAM</a></li>
+  </ul>
+</div>
+
+<!-- Page content -->
+<div class="w3-content" style="max-width:1800px;margin-top:46px;">
+
+</div>
+<script>
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+
+// When the user clicks anywhere outside of the modal, close it
+var modal = document.getElementById('ticketModal');
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABb8D4J8OYv2WQMhXc1xQz-2sF1RxCHUY&sensor=false&v=3&libraries=geometry"></script>
+<div id="mapContainer">
+  <div id="map" style="max-width:1800px;"></div>
+</div>
+<script type="text/javascript">
+var taxiRanks = [
+  ["Ralph St, Claremont, Cape Town, 7708, South Africa",new google.maps.LatLng(-33.8942695,18.6294384)],
+  ["Riverstone Rd, Wynberg, Cape Town, 7800, South Africa",new google.maps.LatLng(-34.0027901,18.4692948)],
+  ["Brisbane Rd, Wynberg, Cape Town, 7800, South Africa",new google.maps.LatLng(-34.0041795,18.4724879)],
+  ["Rouxton Cres, Southern Suburbs, Cape Town, 7780, South Africa",new google.maps.LatLng(-33.9898318,18.4724879)],
+  ["Hanover Park Ave, Hanover Park, Cape Town, 7782, South Africa",new google.maps.LatLng(-33.9966013,18.5269997)],
+  ["Birdwood St, Athlone, Cape Town, 7760, South Africa",new google.maps.LatLng(-33.9644819,18.5019669)],
+  ["St Peters Rd, Mowbray, Cape Town, 7700, South Africa",new google.maps.LatLng(-33.948199,18.4740943)],
+  ["Voortrekker Rd, Maitland, Kapstadt 7405, South Africa",new google.maps.LatLng(-33.9192934,18.5080666)],
+  [" Darling St, Cape Town City Centre, Cape Town, 8000, South Africa",new google.maps.LatLng(-33.9248509,18.423627)],
+  ["Christiaan Barnard St, Foreshore, Cape Town, 8001, South Africa",new google.maps.LatLng(-33.922522,18.4322111)],
+  ["Voortrekker Rd, Maitland, Cape Town, 7405, South Africa",new google.maps.LatLng(-33.9192934,18.5080666)],
+  ["Ratanga Rd, Century City, Cape Town, 7441, South Africa",new google.maps.LatLng(-33.9192934,18.5080666)],
+  ["Washington St, Langa, Cape Town, 7456, South Africa",new google.maps.LatLng(-33.9439859,18.528883)],
+  ["Off Ny 3 (Next to Station), Guguletu, Cape Town, 7750, South Africa",new google.maps.LatLng(-33.986245,18.565181)],
+  ["Emms Dr, Nyanga, Cape Town, 7750, South Africa",new google.maps.LatLng(-33.996747,18.5830509)],
+  ["Buck Rd, Lotus River, Cape Town, 7805, South Africa",new google.maps.LatLng(-34.0380424,18.5197215)],
+  ["5th Ave, Cape Town, 7888, South Africa",new google.maps.LatLng(-34.0482803,18.4976148)],
+  ["Zwaans Rd, Retreat, Cape Town, 7965, South Africa",new google.maps.LatLng(-34.0580824,18.4619764)],
+  ["Louis Thibault Dr, Edgemead, Cape Town, 7441, South Africa",new google.maps.LatLng(-33.8713429,18.5476149)],
+  ["Bellville, Cape Town, 7441, South Africa",new google.maps.LatLng(-33.9057397,18.6295021)],
+  ["51 Lower Klipfontein Rd",new google.maps.LatLng(-33.961976,18.5122329)]
+];
+
+function distance(pointA, pointB){
+  temp1 = pointA+"";
+  temp2 = pointB+"";
+
+  temp1 = temp1.replace("(","");
+  temp1 = temp1.replace(")","");
+  temp2 = temp2.replace("(","");
+  temp2 = temp2.replace(")","");
+
+  X = temp1.split(",");
+  Y = temp2.split(",");
+  return  Math.sqrt(Math.pow(X[0]-Y[0], 2)+ Math.pow(X[1]-Y[1], 2));
+}
+function closestTaxiRank(destinationPoint){
+  closestRank = taxiRanks[0];
+  for(i=0; i < 20; i++){
+    if(distance(destinationPoint, taxiRanks[i][1]) < distance(destinationPoint, closestRank[1]))
+      closestRank = taxiRanks[i];
+  }
+  return closestRank;
+}
+
+
+
+var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 12
+});
+var userLocationMarker = new google.maps.Marker();
+var destLocMarker = new google.maps.Marker({map: map});
+
+
+var infoWindow = new google.maps.InfoWindow();
+var infoWindow2 = new google.maps.InfoWindow();
+
+// Try HTML5 geolocation.
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var pos = {lat: position.coords.latitude,lng: position.coords.longitude};
+        var dest = closestTaxiRank(pos)[1];
+
+        //localStorage.setItem('userLocLat', pos.lat);
+        //localStorage.setItem('userLocLon', pos.lng);
+
+        userLocationMarker.setPosition(pos);
+        map.setCenter(pos);
+        destLocMarker.setPosition(dest);
+        destLocMarker.setMap(map);
+        userLocationMarker.setMap(map);
+        map.setCenter(pos);
+        displayRoute(pos,dest);
+
+        infoWindow.setContent("You are here");
+        infoWindow.open(map, userLocationMarker);
+
+        infoWindow2.setContent("Taxi Rank");
+        infoWindow2.open(map, destLocMarker);
+
+        userLocationMarker.setIcon({url:'pmarker.png',size: new google.maps.Size(30, 30)});
+        destLocMarker.setIcon({url:'pmarker.png',size: new google.maps.Size(30, 30)});
+
+        map.setZoom(12);
+
+    }, function() {
+        handleLocationError(true, userLocationMarker, map.getCenter());
+    });
+} else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, userLocationMarker, map.getCenter());
+}
+
+function handleLocationError(browserHasGeolocation, userLocationMarker, pos) {
+    marker.setPosition(pos);
+    marker.setContent(browserHasGeolocation ?
+        'Error: The Geolocation service failed.' :
+        'Error: Your browser doesn\'t support geolocation.');
+}
+function displayRoute(start,end) {
+    var directionsDisplay = new google.maps.DirectionsRenderer();// also, constructor can get "DirectionsRendererOptions" object
+    directionsDisplay.setMap(map); // map should be already initialized.
+
+    var request = {
+        origin : start,
+        destination : end,
+        travelMode : google.maps.TravelMode.WALKING
+    };
+    var directionsService = new google.maps.DirectionsService();
+    directionsService.route(request, function(response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+        }
+    });
+}
+</script>
+</body>
+</html>

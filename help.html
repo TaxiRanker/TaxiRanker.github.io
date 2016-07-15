@@ -9,6 +9,89 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <style>
 body {font-family: "Lato", sans-serif ; text-align: center;}
+
+/*
+ * Our Custom Styles
+ */
+
+/* Global App styles */
+html, body {
+    height: 100%;
+}
+
+.app-wrapper {
+    max-width: 667px;
+    margin: 0 auto;
+    height: 100%;
+    position: relative;
+}
+
+.container {
+    max-width: 100%;
+}
+
+.navbar {
+    position: absolute;
+    z-index: 4;
+    left: 0;
+    width: 100%;
+}
+
+.navbar + .container {
+    padding-top: 50px;
+}
+
+.map-page .navbar {
+    margin-bottom: 0;
+}
+
+.map-page .container {
+    height: 100%;
+    padding: 0;
+    position: relative;
+}
+
+.navbar-nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar-nav > li {
+    float: none !important;
+}
+
+.navbar-brand {
+    height: auto;
+}
+
+/* About Page */
+.app-wrapper {
+    background-color:#FCE4EC
+}
+
+h1 {
+  color: grey;
+  font-style: italic;
+  font-weight: bold;
+}
+
+h2 {
+  color: #990099;
+  font-family:
+}
+
+h3 {
+  color: grey;
+  font-style: italic;
+  font-size: 24px;
+}
+.instructions li{
+  text-align: left;
+  color: #444;
+  padding: 2px;
+  margin: 5px;
+}
 </style>
 <body style="background-color:">
 
@@ -43,6 +126,21 @@ body {font-family: "Lato", sans-serif ; text-align: center;}
 </div>
 <!-- Page content -->
 <div class="w3-content" style="max-width:1800px;margin-top:46px">
+  <h1>Help Page</h1>
+  <h2>Here are some tips to help you use taxi Ranker:</h2>
+
+<ol class="instructions">
+<li>Firstly you need to make sere your cellphone's GPS location is on when you are using this app.</li>
+<li>Click on the "Find taxi Ranks" button</li>
+<li>When asked to,click on "Share location".There may be a slight delay</li>
+<li>This should bring you to a list of nearby taxi ranks.</li>
+<li>Select the taxi rank of your choice</li>
+<li>After selecting the taxi rank of your choice,a map will display the quickest route.</li>
+<li>Follow the given directions and you have reached your destination.</li>
+</ol>
+
+<a href="http://www.code4ct.com">Code For Cape Town</a>
+<br>
 <a href="directions.html">  <button type="button" style="
      background-color: teal;
      border:none;
@@ -53,28 +151,6 @@ body {font-family: "Lato", sans-serif ; text-align: center;}
      display: inline-block;
      margin-top: 40px;
      font-size: 16px;">Get My Location</button></a>
-
-
-
-  <!-- The Band Section -->
-  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px">
-    <h1 style="font-family:'Comic Sans MS',cursive,sans-serif">WELCOME TO TAXI RANKER</h1>
-    <figure>
-<img src="taxi.jpg";  width="95%"/>
-    </figure>
-    <h2 style="font-family:'Comic Sans MS',cursive,sans-serif">Mission</h2>
-    <p>Our mission is to create a website that will enable people to find the closest
-      and safest route to a taxi rank from where they are using their GPS co-ordinates.</p>
-  <!-- OUR TEAM -->
-  <h3>Our team</h3>
-  <figure>
-    <img src="us.jpg"; style="height:200px; width:250px"/>
-    <img src="code.jpg"; style="height:200px;"/>
-
-
-  </figure>
-
-
 
 
 <!-- End Page Content -->
